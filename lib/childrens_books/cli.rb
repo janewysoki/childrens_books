@@ -1,7 +1,3 @@
-require 'pry'
-require_relative './book.rb'
-require_relative './scraper.rb'
-
 module ChildrensBooks
     class CLI
 
@@ -10,33 +6,40 @@ module ChildrensBooks
             puts ""
             puts "Welcome to the Children's Books Database!"
             puts ""
-            @input = nil #ask what this does and why input is an instance variable
+            @input = nil
             menu
-            while @input != "exit"
+            while @input != "exit" 
                 @input = gets.chomp
                 if @input == "1"
                     puts "Here are some books 2-4 year olds will love:"
-                    print_preschoolbooks
+                    books_array = ChildrensBooks::Book.preschoolbooks
+                    print_books(books_array)
                 elsif @input == "2"
                     puts "Here are some books 5-7 year olds will love:"
+                    books_array = ChildrensBooks::Book.littlekidbooks
+                    print_books(books_array)
                 elsif @input == "3"
                     puts "Here are some books 8-9 year olds will love:"
+                    books_array = ChildrensBooks::Book.bigkidbooks
+                    print_books(books_array)
                 elsif @input == "4"
                     puts "Here are some books 10-12 year olds will love:"
+                    books_array = ChildrensBooks::Book.tweenbooks
+                    print_books(books_array)
                 elsif @input == "5"
                     puts "Here's a randomly selected book for you to try:"
-                    #ChildrensBooks::Book.surprise_me
+                    book_obj = ChildrensBooks::Book.all.sample
+                    print_book(book_obj)
                 elsif @input == "menu"
                     menu
                 elsif @input == "exit"
-                    
+                    break
                 else 
                     puts "Sorry, you did not select a valid number. Please try again."
                     puts ""
                     menu
                 end
             end
-            
             puts "Thanks for visiting. I hope you're headed out to the bookstore!" #IS THIS BETTER UNDER LINE 24?
         end
 
@@ -55,24 +58,26 @@ module ChildrensBooks
             puts ""
         end
 
-        def print_preschoolbooks
-            ChildrensBooks::Book.preschoolbooks.each do |preschool_book|
+        def print_books(array)
+            array.each do |book|
                 puts ""
-                puts "Title: #{preschool_book.title}"
-                puts "Author: #{preschool_book.author}"
-                puts "Description: #{preschool_book.description}"
-                puts "Release Year: #{preschool_book.year}"
+                puts "Title: #{book.title}"
+                puts "Author: #{book.author}"
+                puts "Description: #{book.description}"
+                puts "Release Year: #{book.year}"
+                puts "Age: #{book.age}"
                 puts ""
             end
         end
+
+        def print_book(book)
+                puts ""
+                puts "Title: #{book.title}"
+                puts "Author: #{book.author}"
+                puts "Description: #{book.description}"
+                puts "Release Year: #{book.year}"
+                puts "Age: #{book.age}"
+                puts ""
+        end
     end
 end
-
-#puts ChildrensBooks::Book.print_preschoolbooks #.each do |preschool_book|
-                        #puts ""
-                        #puts "Title: #{preschool_book.title}"
-                        #puts "Author: #{preschool_book.author}"
-                        #puts "Description: #{preschool_book.description}"
-                        #puts "Release Year: #{preschool_book.year}"
-                        #puts ""
-                    #end
