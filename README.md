@@ -1,8 +1,6 @@
 # ChildrensBooks
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/childrens_books`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby Gem provides a CLI to view the 50 books all children should read before they turn 12 according to Common Sense Media's website.
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the below into your terminal and follow the on screen prompts.
+
+    $ childrens_books
 
 ## Development
 
