@@ -1,4 +1,3 @@
-require 'colorize'
 module ChildrensBooks
     class CLI
 
