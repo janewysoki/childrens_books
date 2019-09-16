@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/childrens_books"
+
+ChildrensBooks::CLI.new.call
