@@ -9,3 +9,7 @@
 
 # rspec failure tracking
 .rspec_status
+childrens_books-0.1.0.gem
+childrens_books-0.2.0.gem 
+Gemfile.lock
+.DS_Store
