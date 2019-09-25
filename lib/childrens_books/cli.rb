@@ -11,12 +11,12 @@ module ChildrensBooks
             puts ""
             puts "Welcome to the Children's Books Database!".magenta
             puts ""
-            @input = nil #has to have a value to use in while conditional
+            @input = nil
             menu
             while @input != "exit" 
-                @input = gets.chomp #gets asks for user input/gets user input #input here comes in as string because of gets
+                @input = gets.chomp
                 if (1..4).include?(@input.to_i)
-                    index = @input.to_i - 1 #the index number of the element in the array #convert the input to an index
+                    index = @input.to_i - 1 
                     puts "Here are some books #{@@ages[index]} year olds will love:".green
                     books_array = @@books_by_age[index]
                     print_books(books_array)
@@ -24,7 +24,7 @@ module ChildrensBooks
                 elsif @input == "5"
                     puts "Here's a randomly selected book for you to try:".green
                     book_obj = ChildrensBooks::Book.all.sample
-                    print_book(book_obj) #self here is an instance of the CLI class
+                    print_book(book_obj) 
                     puts "Enter 'menu' for more options or 'exit' to leave the program.".green
                 elsif @input == "menu"
                     menu
@@ -42,12 +42,13 @@ module ChildrensBooks
         def menu
             puts "Select an age range to see the best children's book suggestions!".cyan
             puts ""
-            @@ages.each.with_index(1) do |range, index| #index is reference point to location in array
+            @@ages.each.with_index(1) do |range, index|
                 puts "#{index}. Ages #{range}"
             end
             puts "5. Surprise me!"
             puts "Type 'exit' to leave the program."
             puts "Type 'menu' at any time to return to menu."
+            puts ""
         end
 
         def print_books(array)
@@ -71,8 +72,6 @@ module ChildrensBooks
                 puts "Age: #{book.age}"
                 puts ""
         end
-    
-    
     end
 end
 
