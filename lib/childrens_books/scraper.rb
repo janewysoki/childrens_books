@@ -5,7 +5,7 @@ module ChildrensBooks
             doc = Nokogiri::HTML(html)
             
             doc.css(".views-row-odd").each do |node|
-                title = node.css("strong.field-content a").text #pulling value from the page
+                title = node.css("strong.field-content a").text
                 author = node.css("div.views-field-field-term-book-authors").text.gsub("By", "").strip
                 description = node.css("div.views-field-field-one-liner").text.strip
                 age = node.css("div.views-field-field-review-recommended-age").text.strip.delete("age").delete("+").split.join("")

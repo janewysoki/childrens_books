@@ -1,13 +1,9 @@
+require 'pry'
 module ChildrensBooks
     class CLI
         @@ages = ["2-4", "5-7", "8-9", "10-12"]
         def call 
             ChildrensBooks::Scraper.scrape
-            @@preschoolbooks = ChildrensBooks::Book.preschoolbooks
-            @@littlekidbooks = ChildrensBooks::Book.littlekidbooks
-            @@bigkidbooks = ChildrensBooks::Book.bigkidbooks
-            @@tweenbooks = ChildrensBooks::Book.tweenbooks
-            @@books_by_age = [@@preschoolbooks, @@littlekidbooks, @@bigkidbooks, @@tweenbooks]
             puts ""
             puts "Welcome to the Children's Books Database!".magenta
             puts ""
@@ -18,7 +14,7 @@ module ChildrensBooks
                 if (1..4).include?(@input.to_i)
                     index = @input.to_i - 1 
                     puts "Here are some books #{@@ages[index]} year olds will love:".green
-                    books_array = @@books_by_age[index]
+                    books_array = ChildrensBooks::Book.books_by_age(@@ages[index])
                     print_books(books_array)
                     puts "Enter 'menu' for more options or 'exit' to leave the program.".green
                 elsif @input == "5"
@@ -38,7 +34,7 @@ module ChildrensBooks
             end
             puts "Thanks for visiting. I hope you're headed out to the bookstore!".magenta
         end
-
+      
         def menu
             puts "Select an age range to see the best children's book suggestions!".cyan
             puts ""
@@ -53,13 +49,7 @@ module ChildrensBooks
 
         def print_books(array)
             array.each do |book|
-                puts ""
-                puts "Title: #{book.title}"
-                puts "Author: #{book.author}"
-                puts "Description: #{book.description}"
-                puts "Release Year: #{book.year}"
-                puts "Age: #{book.age}"
-                puts ""
+                print_book(book)
             end
         end
 
